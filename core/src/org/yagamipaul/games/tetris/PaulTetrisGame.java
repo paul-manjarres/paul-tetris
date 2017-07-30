@@ -7,12 +7,11 @@ import org.yagamipaul.games.tetris.screens.MainGameScreen;
 
 public class PaulTetrisGame extends Game {
 
-	
-	@Override
-	public void create () {
-		setScreen(new MainGameScreen());
 
-	}
+    @Override
+    public void create() {
+        setScreen(new MainGameScreen());
+    }
 
 
 }

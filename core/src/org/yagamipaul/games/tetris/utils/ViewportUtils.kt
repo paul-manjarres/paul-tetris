@@ -3,7 +3,7 @@ package org.yagamipaul.games.tetris.utils
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.viewport.Viewport
-import javax.print.attribute.IntegerSyntax
+
 
 /**
  * Created by JeanPaul on 20/07/2017.
@@ -12,10 +12,6 @@ import javax.print.attribute.IntegerSyntax
 class ViewportUtils {
 
 
-    /**
-     * Cell size
-     */
-    private var CELL_SIZE = 1
 
 
     fun drawGrid(viewport: Viewport, renderer: ShapeRenderer, cellSize: Int ){
@@ -23,8 +19,8 @@ class ViewportUtils {
 
 
         val oldColor = renderer.color
-        val worldWidth: Int =  viewport.worldWidth.toInt()
-        val worldHeight: Int = viewport.worldHeight.toInt()
+        val worldWidth =  viewport.worldWidth.toInt()
+        val worldHeight = viewport.worldHeight.toInt()
         val doubleWorldWidth: Int = worldWidth * 2
         val doubleWorldHeight: Int = worldHeight * 2
 
@@ -40,6 +36,21 @@ class ViewportUtils {
         for( y in -doubleWorldHeight..doubleWorldHeight step cellSize){
             renderer.line( -doubleWorldWidth.toFloat(), y.toFloat(), doubleWorldWidth.toFloat(), y.toFloat())
         }
+
+
+        // Draw world lines
+        renderer.color = Color.RED
+        renderer.line(0F, -doubleWorldHeight.toFloat(), 0F, doubleWorldHeight.toFloat())
+        renderer.line(-doubleWorldWidth.toFloat(), 0F, doubleWorldWidth.toFloat(), 0F)
+
+        // Draw world bounds
+
+        renderer.color = Color.GREEN
+        renderer.line(0F, worldHeight.toFloat(), worldWidth.toFloat(), worldHeight.toFloat())
+        renderer.line(worldWidth.toFloat(), 0F , worldWidth.toFloat(), worldHeight.toFloat())
+
+
+
 
         renderer.end()
         renderer.color = oldColor
