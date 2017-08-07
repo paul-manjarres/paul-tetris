@@ -16,8 +16,6 @@ class ViewportUtils {
 
     fun drawGrid(viewport: Viewport, renderer: ShapeRenderer, cellSize: Int ){
 
-
-
         val oldColor = renderer.color
         val worldWidth =  viewport.worldWidth.toInt()
         val worldHeight = viewport.worldHeight.toInt()
@@ -50,8 +48,6 @@ class ViewportUtils {
         renderer.line(worldWidth.toFloat(), 0F , worldWidth.toFloat(), worldHeight.toFloat())
 
 
-
-
         renderer.end()
         renderer.color = oldColor
 
@@ -59,6 +55,12 @@ class ViewportUtils {
 
     }
 
+
+    fun debugPPU(vp: Viewport){
+
+        println("xPPU: "+ (vp.screenWidth / vp.worldWidth) + "yPPU: "+ (vp.screenHeight/vp.worldHeight) )
+
+    }
 
 
 

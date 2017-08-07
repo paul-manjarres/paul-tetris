@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.badlogic.gdx.utils.viewport.Viewport
+import org.yagamipaul.games.tetris.config.TetrisGameConfig
 import org.yagamipaul.games.tetris.utils.ViewportUtils
 
 
@@ -21,15 +22,14 @@ class MainGameScreen : BaseScreen() {
     private var camera:Camera?=null
     private lateinit  var viewport:Viewport
 
-    private val WORLD_WIDTH = 6.0f
-    private val WORLD_HEIGHT = 10.0f
+
 
     /** Called when this screen becomes the current screen for a [Game].  */
     override fun show() {
 
         viewPortUtils = ViewportUtils()
         camera = OrthographicCamera()
-        viewport = FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera)
+        viewport = FitViewport(TetrisGameConfig.WORLD_WIDTH, TetrisGameConfig.WORLD_HEIGHT, camera)
 
     }
 
@@ -37,6 +37,7 @@ class MainGameScreen : BaseScreen() {
      */
     override fun resize(width: Int, height: Int) {
         viewport.update(width, height)
+        viewPortUtils.debugPPU(viewport)
 
     }
 
