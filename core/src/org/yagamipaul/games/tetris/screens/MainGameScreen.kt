@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.badlogic.gdx.utils.viewport.Viewport
 import org.yagamipaul.games.tetris.config.TetrisGameConfig
+import org.yagamipaul.games.tetris.utils.CameraController
 import org.yagamipaul.games.tetris.utils.ViewportUtils
 
 
@@ -19,8 +20,10 @@ class MainGameScreen : BaseScreen() {
 
     private lateinit var viewPortUtils:ViewportUtils
     private var renderer:ShapeRenderer = ShapeRenderer()
-    private var camera:Camera?=null
+    private lateinit var camera:OrthographicCamera
     private lateinit  var viewport:Viewport
+
+    private lateinit var cameraController : CameraController
 
 
 
@@ -30,6 +33,9 @@ class MainGameScreen : BaseScreen() {
         viewPortUtils = ViewportUtils()
         camera = OrthographicCamera()
         viewport = FitViewport(TetrisGameConfig.WORLD_WIDTH, TetrisGameConfig.WORLD_HEIGHT, camera)
+
+        cameraController = CameraController()
+        cameraController.setPosition(TetrisGameConfig.WORLD_WIDTH/2, TetrisGameConfig.WORLD_HEIGHT /2)
 
     }
 
@@ -55,6 +61,8 @@ class MainGameScreen : BaseScreen() {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
+        cameraController.handleInput(delta)
+        cameraController.applyTo(camera)
 
         viewPortUtils.drawGrid(viewport, renderer, 1)
 
